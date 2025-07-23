@@ -156,5 +156,8 @@ bst.insert(28);
 bst.insert(18, "Found it!");
 
 console.log(bst);
-console.log(bst.find(18)); // Output: 5
-console.log(bst.find(15)); // Output: 10
+console.log(bst.find(18)); 
+console.log(bst.find(15)); 
+
+console.log(bst.remove(15));
+
