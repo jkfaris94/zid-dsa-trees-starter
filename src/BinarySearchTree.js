@@ -161,6 +161,40 @@ class BinarySearchTree {
 
       return values;
     }
+
+        dfsPreOrder(values=[]) {
+      // First, process the current node
+      values.push(this.value);
+
+      // Next, process the left node recursively
+      if (this.left) {
+        values = this.left.dfsPreOrder(values);
+      }
+
+      // Finally, process the right node recursively
+      if (this.right) {
+        values = this.right.dfsPreOrder(values);
+      }
+
+      return values;
+    }
+
+        dfsPostOrder(values = []) {
+      // First, process the left node recursively
+      if (this.left) {
+        values = this.left.dfsPostOrder(values);
+      }
+
+      // Next, process the right node recursively
+      if (this.right) {
+        values = this.right.dfsPostOrder(values);
+      }
+
+      // Finally, process the current node
+      values.push(this.value);
+
+      return values;
+    }
 }
 
 
@@ -173,6 +207,5 @@ bst.insert(28, 28);
 bst.insert(18, 18);
 
 
-console.log(bst.dfsInOrder()); // [2, 5, 15, 18, 19, 28]
-// (bst.find(18));
+console.log(bst.dfsPostOrder()); 
 
