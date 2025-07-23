@@ -72,4 +72,50 @@ class BinarySearchTree {
             throw new Error('Key Not Found');
         }
     }
+
+    remove(key) {
+        if (this.key == key) {
+            if (this.left && this.right) {
+                const successor = this.right._findMin();
+                this.key = successor.key;
+                this.value = successor.value;
+                successor.remove(successor.key);
+            }
+            /* If the node only has a left child,
+               then you replace the node with its left child. */
+            else if (this.left) {
+                this._replaceWith(this.left);
+            }
+            /* And similarly, if the node only has a right child,
+               then you replace it with its right child. */
+            else if (this.right) {
+                this._replaceWith(this.right);
+            }
+            /* If the node has no children, then
+               simply remove it and any references to it
+               by calling `this._replaceWith(null)`. */
+            else {
+                this._replaceWith(null);
+            }
+        }
+        else if (key < this.key && this.left) {
+            this.left.remove(key);
+        }
+        else if (key > this.key && this.right) {
+            this.right.remove(key);
+        }
+        else {
+            throw new Error('Key Not Found');
+        }
 }
+
+const bst = new BinarySearchTree(5);
+bst.insert(2);
+bst.insert(19);
+bst.insert(15);
+bst.insert(28);
+bst.insert(18, "Found it!");
+
+console.log(bst);
+console.log(bst.find(18)); // Output: 5
+console.log(bst.find(15)); // Output: 10
