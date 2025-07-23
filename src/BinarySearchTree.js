@@ -107,7 +107,10 @@ class BinarySearchTree {
         else {
             throw new Error('Key Not Found');
         }
+    }
 }
+
+
 
 const bst = new BinarySearchTree(5);
 bst.insert(2);
