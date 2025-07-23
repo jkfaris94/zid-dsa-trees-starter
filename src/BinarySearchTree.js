@@ -144,20 +144,35 @@ class BinarySearchTree {
         }
         return this.left._findMin();
     }
+
+    dfsInOrder(values = []) {
+      // First, process the left node recursively
+      if (this.left) {
+        values = this.left.dfsInOrder(values);
+      }
+
+      // Next, process the current node
+      values.push(this.value);
+
+      // Finally, process the right node recursively
+      if (this.right) {
+        values = this.right.dfsInOrder(values);
+      }
+
+      return values;
+    }
 }
 
 
 
-const bst = new BinarySearchTree(5);
-bst.insert(2);
-bst.insert(19);
-bst.insert(15);
-bst.insert(28);
-bst.insert(18, "Found it!");
+const bst = new BinarySearchTree(5, 5);
+bst.insert(2, 2);
+bst.insert(19, 19);
+bst.insert(15, 15);
+bst.insert(28, 28);
+bst.insert(18, 18);
 
-console.log(bst);
-console.log(bst.find(18)); 
-console.log(bst.find(15)); 
 
-console.log(bst.remove(15));
+console.log(bst.dfsInOrder()); // [2, 5, 15, 18, 19, 28]
+// (bst.find(18));
 
