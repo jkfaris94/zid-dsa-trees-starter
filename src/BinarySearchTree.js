@@ -45,4 +45,31 @@ class BinarySearchTree {
             }
         }
     }
+
+    find(key) {
+        // If the item is found at the root, then return that value.
+        if (this.key == key) {
+            return this.value;
+        }
+        /* If the item that you are looking for is less than the root,
+           then follow the left child.
+           If there is an existing left child,
+           then recursively check its left and/or right child
+           until you find the item. */
+        else if (key < this.key && this.left) {
+            return this.left.find(key);
+        }
+        /* If the item that you are looking for is greater than the root,
+           then follow the right child.
+           If there is an existing right child,
+           then recursively check its left and/or right child
+           until you find the item. */
+        else if (key > this.key && this.right) {
+            return this.right.find(key);
+        }
+        // You have searched the tree, and the item isn't in the tree.
+        else {
+            throw new Error('Key Not Found');
+        }
+    }
 }
